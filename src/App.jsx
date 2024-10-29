@@ -40,7 +40,7 @@ function Navbar({ walletAddress, handleConnect, isMenuOpen, handleMenuToggle }) 
   return (
     <div className="navbar">
       <div className="flex-1">
-        <img src="./evry-app-logo.png" alt="logo" className='btn btn-link no-animation flex px-2' />
+        <img src="./evry-app-logo3.png" alt="logo" className='btn btn-link no-animation flex px-2' />
       </div>
       <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
         <div className="flex justify-between items-center">
