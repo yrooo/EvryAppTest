@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
-import "./app.css"
+import "./App.css"
 
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
