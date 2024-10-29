@@ -17,12 +17,12 @@ function App() {
     <>
       <div className="navbar">
         <div className="flex-1">
-          <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation px-4 ' />
+          <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation px-4' />
         </div>
         <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
           <div className="flex justify-between items-center">
             <TonConnectButton
-              className="py-4 px-4"
+              className="py-2 px-4"
               onConnect={handleConnect}
             />
             {walletAddress && (
@@ -42,6 +42,9 @@ function App() {
         </TonConnectUIProvider>
       </div>
       <button className="btn w-63 rounded-full">Button</button>
+      <div className="flex container">
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo autem provident, aut repellat at facilis. Eligendi, culpa dolorum facere dicta quod totam, quia earum ipsa natus esse at illum quos.</h1>
+      </div>
     </>
   );
 }
