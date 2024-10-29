@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+@keyframes popOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.btm-nav button {
+  transition: opacity 0.3s ease;
+  opacity: 0.5;
+}
+
+.btm-nav button.active {
+  opacity: 1;
+}
