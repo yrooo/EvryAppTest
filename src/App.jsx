@@ -17,7 +17,7 @@ function App() {
     <>
       <div className="navbar">
         <div className="flex-1">
-          <img src="./Evry-app-logo.png" alt="logo" className='btn btn-lg no-animation' />
+          <img src="./Evry-app-logo.png" alt="logo" className='btn btn-lg no-animation px-1 py-1' />
         </div>
         <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
           <div className="flex justify-between items-center">
