@@ -16,24 +16,28 @@ function App() {
   };
 
   return (
-    <div className="app-container grid grid-rows-[auto,1fr,auto] min-h-screen">
-      <Navbar 
-        walletAddress={walletAddress} 
-        handleConnect={handleConnect} 
+  <>
+    <div className="flex">
+    <Navbar 
+    walletAddress={walletAddress} 
+    handleConnect={handleConnect} 
         isMenuOpen={isMenuOpen} 
         handleMenuToggle={handleMenuToggle} 
       />
+    </div>
+    <div className="app-container grid grid-rows-[auto,1fr,auto] min-h-screen">
       <MainContent activeTab={activeTab} />
       <BottomNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
+  </>
   );
 }
 
 function Navbar({ walletAddress, handleConnect, isMenuOpen, handleMenuToggle }) {
   return (
-    <div className="navbar flex">
+    <div className="navbar">
       <div className="flex-1">
-        <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation flex px-4 py-1' />
+        <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation flex px-2' />
       </div>
       <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
         <div className="flex justify-between items-center">
