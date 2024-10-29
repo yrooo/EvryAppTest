@@ -15,8 +15,11 @@ function App() {
 
   return (
   <>
-    <div className="bg-black mx-auto flex justify-end">
-      <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
+    <div className="navbar">
+      <div className="flex-1">
+        <img src="./evry-logo" alt="logo" className='btn btn-lg no-animation'/>
+      </div>
+      <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
         <div className="flex justify-between items-center">
           <TonConnectButton
             className="py-4 px-4"
@@ -38,7 +41,8 @@ function App() {
         </div>
       </TonConnectUIProvider>
     </div>
-    <button className="btn w-63 rounded-full">Button</button>
+  <button className="btn w-63 rounded-full">Button</button>
+  div.
   </>
   );
 }
