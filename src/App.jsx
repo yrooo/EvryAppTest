@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="app-container grid grid-rows-[auto,1fr,auto]">
+    <div className="app-container grid grid-rows-[auto,1fr,auto] min-h-screen">
       <Navbar 
         walletAddress={walletAddress} 
         handleConnect={handleConnect} 
@@ -31,9 +31,9 @@ function App() {
 
 function Navbar({ walletAddress, handleConnect, isMenuOpen, handleMenuToggle }) {
   return (
-    <div className="navbar fixed top-0 left-0 right-0 z-40 p-4">
+    <div className="navbar flex">
       <div className="flex-1">
-        <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation px-4 py-1' />
+        <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation flex px-4 py-1' />
       </div>
       <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
         <div className="flex justify-between items-center">
@@ -115,14 +115,18 @@ function BottomNavigation({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="btm-nav btm-nav-sm">
+    <div className="btm-nav btm-nav-sm bg-base-100">
       {navItems.map((item) => (
         <button
           key={item.id}
-          className={`flex flex-col items-center justify-center ${activeTab === item.id ? 'active' : ''}`}
+          className={`flex flex-col items-center justify-center ${
+            activeTab === item.id 
+              ? 'active text-primary' 
+              : 'text-white opacity-50 hover:opacity-75'
+          }`}
           onClick={() => setActiveTab(item.id)}
         >
-          <item.icon />
+          <item.icon className={activeTab === item.id ? 'text-primary' : 'text-white'} />
           <span className="btm-nav-label">{item.label}</span>
         </button>
       ))}
