@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="app-container flex flex-col min-h-screen">
+    <div className="app-container grid grid-rows-[auto,1fr,auto]">
       <Navbar 
         walletAddress={walletAddress} 
         handleConnect={handleConnect} 
@@ -31,14 +31,14 @@ function App() {
 
 function Navbar({ walletAddress, handleConnect, isMenuOpen, handleMenuToggle }) {
   return (
-    <div className="navbar">
+    <div className="navbar fixed top-0 left-0 right-0 z-40 p-4">
       <div className="flex-1">
         <img src="./Evry-app-logo.png" alt="logo" className='btn btn-link no-animation px-4 py-1' />
       </div>
       <TonConnectUIProvider manifestUrl="https://coral-cautious-hoverfly-673.mypinata.cloud/ipfs/QmYgTbUpnXH9J3ANMrTARMQt5uMEAMZfuQ6te88CU74LJt">
         <div className="flex justify-between items-center">
           <TonConnectButton
-            className=" "
+            className=""
             onConnect={handleConnect}
           />
           {walletAddress && (
@@ -72,7 +72,7 @@ function WalletMenu({ walletAddress, isMenuOpen, handleMenuToggle }) {
 
 function MainContent({ activeTab }) {
   return (
-    <div className="main-content flex-grow p-4">
+    <div className="main-content flex-grow p-4 pt-10">
       {activeTab === 'home' && <HomeContent />}
       {activeTab === 'info' && <InfoContent />}
       {activeTab === 'stats' && <StatsContent />}
