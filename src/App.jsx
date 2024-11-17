@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
+import { Calendar, Home, PlusCircle} from 'lucide-react';
 import "./App.css"
 import EventDiscoveryContent from './components/EventDiscoveryContent';
 import EventCreationContent from './components/EventCreationContent';
@@ -8,7 +9,7 @@ import EventList from './components/EventList';
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('eventlist');
 
   const handleConnect = (address) => {
     setWalletAddress(address);
@@ -19,20 +20,95 @@ function App() {
   };
 
   return (
-  <>
-    <div className="flex">
-      <Navbar 
-        walletAddress={walletAddress} 
-        handleConnect={handleConnect} 
-        isMenuOpen={isMenuOpen} 
-        handleMenuToggle={handleMenuToggle} 
-      />
+    <>
+      <div className="flex">
+        <Navbar 
+          walletAddress={walletAddress} 
+          handleConnect={handleConnect} 
+          isMenuOpen={isMenuOpen} 
+          handleMenuToggle={handleMenuToggle} 
+        />
+      </div>
+      <div className="app-container grid grid-rows-[auto,1fr,auto] min-h-screen">
+        <MainContent activeTab={activeTab} />
+        <BottomNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
+    </>
+  );
+}
+
+function BottomNavigation({ activeTab, setActiveTab }) {
+  const navItems = [
+    { 
+      id: 'events', 
+      icon: Calendar, 
+      label: 'Events',
+    },
+    { 
+      id: 'eventlist', 
+      icon: Home, 
+      label: 'My Tickets',
+      isPrimary: true,
+    },
+    { 
+      id: 'create', 
+      icon: PlusCircle, 
+      label: 'Create',
+    },
+  ];
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-200 px-2 py-1 z-50">
+      <div className="max-w-lg mx-auto">
+        <div className="flex justify-between items-center">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex flex-col items-center justify-center px-3 py-2 relative ${
+                activeTab === item.id 
+                  ? 'text-primary' 
+                  : 'text-base-content/70 hover:text-base-content/90'
+              }`}
+            >
+              {/* Notification Badge */}
+              {item.notification > 0 && (
+                <div className="absolute -top-1 -right-1">
+                  <div className="bg-error text-error-content text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {item.notification}
+                  </div>
+                </div>
+              )}
+              
+              {/* Icon with special styling for create button */}
+              <div className={`${
+                item.isPrimary 
+                  ? 'bg-primary rounded-full p-3 -mt-8 shadow-lg hover:shadow-xl transition-shadow' 
+                  : ''
+              }`}>
+                <item.icon 
+                  className={`${
+                    item.isPrimary 
+                      ? 'text-primary-content w-6 h-6' 
+                      : `w-5 h-5 ${activeTab === item.id ? 'text-primary' : ''}`
+                  }`}
+                />
+              </div>
+              
+              {/* Label */}
+              <span className={`text-xs mt-1 ${
+                item.isPrimary ? 'mt-2' : ''
+              }`}>
+                {item.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      {/* Safe area spacing for iOS */}
+      <div className="h-safe-area-inset-bottom bg-base-100" />
     </div>
-    <div className="app-container grid grid-rows-[auto,1fr,auto] min-h-screen">
-      <MainContent activeTab={activeTab} />
-      <BottomNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-    </div>
-  </>
   );
 }
 
@@ -85,66 +161,6 @@ function MainContent({ activeTab }) {
       {activeTab === 'create' && <EventCreationContent />}
     </div>
   );
-}
-
-function HomeContent() {
-  return (
-    <div>
-      <h1>Upcoming Events</h1>
-      <EventList />
-    </div>
-  );
-}
-
-function BottomNavigation({ activeTab, setActiveTab }) {
-  const navItems = [
-    { id: 'events', icon: EventsIcon, label: 'Events' },
-    { id: 'eventlist', icon: HomeIcon, label: 'Home' },
-    { id: 'create', icon: CreateIcon, label: 'Create' },
-  ];
-
-  return (
-    <div className="btm-nav btm-nav-sm bg-base-100">
-      {navItems.map((item) => (
-        <button
-          key={item.id}
-          className={`flex flex-col items-center justify-center ${
-            activeTab === item.id 
-              ? 'active text-primary' 
-              : 'text-white opacity-50 hover:opacity-75'
-          }`}
-          onClick={() => setActiveTab(item.id)}
-        >
-          <item.icon className={activeTab === item.id ? 'text-primary' : 'text-white'} />
-          <span className="btm-nav-label">{item.label}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function HomeIcon({ className }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-    </svg>
-  );
-}
-
-function EventsIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
-    </svg>
-  )
-}
-
-function CreateIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-  </svg>
-  )
 }
 
 export default App;
