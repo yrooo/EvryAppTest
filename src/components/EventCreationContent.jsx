@@ -78,7 +78,6 @@ const EventCreationContent = () => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
-        // Calculate new dimensions while maintaining aspect ratio
         let { width, height } = img;
         if (width > MAX_DIMENSIONS.width) {
           height *= MAX_DIMENSIONS.width / width;
@@ -98,7 +97,7 @@ const EventCreationContent = () => {
             resolve(new File([blob], file.name, { type: 'image/jpeg' }));
           },
           'image/jpeg',
-          0.8 // Quality setting
+          0.8 
         );
       };
     });
@@ -166,7 +165,7 @@ const EventCreationContent = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="max-w-2xl mx-auto p-2">
       <h2 className="text-2xl font-bold mb-6">Create New Event</h2>
       <form className="space-y-6">
         {/* Image Upload Section */}
@@ -237,7 +236,7 @@ const EventCreationContent = () => {
           <input 
             type="text"
             name="name"
-            placeholder="Nama Acara"
+            placeholder="Event Name"
             className="input input-lg input-ghost w-full text-3xl font-semibold placeholder:text-base-content/50"
             value={eventData.name}
             onChange={handleInputChange}
