@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
-import { Calendar, Home, PlusCircle} from 'lucide-react';
+import { Compass, Ticket, PlusCircle} from 'lucide-react';
 import "./App.css"
 import EventDiscoveryContent from './components/EventDiscoveryContent';
 import EventCreationContent from './components/EventCreationContent';
@@ -41,12 +41,12 @@ function BottomNavigation({ activeTab, setActiveTab }) {
   const navItems = [
     { 
       id: 'events', 
-      icon: Calendar, 
+      icon: Compass, 
       label: 'Events',
     },
     { 
       id: 'eventlist', 
-      icon: Home, 
+      icon: Ticket, 
       label: 'My Tickets',
       isPrimary: true,
     },
@@ -58,29 +58,21 @@ function BottomNavigation({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-200 px-2 py-1 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-200 px-16 py-1 z-50">
       <div className="max-w-lg mx-auto">
         <div className="flex justify-between items-center">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center justify-center px-3 py-2 relative ${
+              className={`flex flex-col items-center justify-center px-4 py-2 relative ${
                 activeTab === item.id 
                   ? 'text-primary' 
                   : 'text-base-content/70 hover:text-base-content/90'
               }`}
             >
-              {/* Notification Badge */}
-              {item.notification > 0 && (
-                <div className="absolute -top-1 -right-1">
-                  <div className="bg-error text-error-content text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {item.notification}
-                  </div>
-                </div>
-              )}
               
-              {/* Icon with special styling for create button */}
+            {/* Icon with special styling for create button */}
               <div className={`${
                 item.isPrimary 
                   ? 'bg-primary rounded-full p-3 -mt-8 shadow-lg hover:shadow-xl transition-shadow' 
