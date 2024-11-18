@@ -58,7 +58,7 @@ function BottomNavigation({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-200 px-16 py-1 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-200 px-10 py-1 z-50">
       <div className="max-w-lg mx-auto">
         <div className="flex justify-between items-center">
           {navItems.map((item) => (
